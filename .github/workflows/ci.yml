@@ -30,13 +30,6 @@ jobs:
     - name: Run tests
       run: dotnet test --configuration Release --no-build --verbosity normal --logger "trx" --collect:"XPlat Code Coverage"
     
-    - name: Publish test results
-      uses: EnricoMi/publish-unit-test-result-action@v2
-      if: always()
-      with:
-        files: |
-          **/TestResults/**/*.trx
-    
     - name: Code coverage report
       uses: codecov/codecov-action@v4
       if: always()
