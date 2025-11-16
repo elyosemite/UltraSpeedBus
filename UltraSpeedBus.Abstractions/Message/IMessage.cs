@@ -8,19 +8,6 @@ public interface IMessage
 
 }
 
-// Sagas
-public interface ISagaState
-{
-}
-
-public interface ISagaRepository<TState>
-{
-}
-
-public interface ISagaContext
-{
-}
-
 // Pipelines and middlewares
 public interface IMessageMiddleware
 {
