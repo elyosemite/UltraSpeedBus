@@ -60,30 +60,37 @@ jobs:
       id: get_version
       run: |
         VERSION=$(git describe --tags --abbrev=0 2>/dev/null | sed 's/^v//' || echo "")
-        if [ -n "$VERSION" ]; then
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "has_release=true" >> $GITHUB_OUTPUT
+        if [ -f .version ]; then
+          echo "new_release=true" >> $GITHUB_OUTPUT
+          echo "version=$(cat .version)" >> $GITHUB_OUTPUT
+          echo "✅ Release version: $(cat .version)"
         else
-          echo "has_release=false" >> $GITHUB_OUTPUT
+          echo "new_release=false" >> $GITHUB_OUTPUT
+          echo "ℹ️ No release created (no relevant commits)"
         fi
       continue-on-error: true
     
     - name: Pack NuGet packages
-      if: steps.semantic.outputs.has_release == 'true'
+      if: steps.check_release.outputs.new_release == 'true'
       run: |
-        VERSION=${{ steps.semantic.outputs.version }}
+        VERSION=${{ steps.check_release.outputs.version }}
+        echo "📦 Packing version: $VERSION"
         dotnet pack --configuration Release --no-build --output ./packages /p:PackageVersion=$VERSION
+        echo "✅ Packages created:"
+        ls -lh ./packages/
     
     - name: Publish to NuGet.org
-      if: steps.semantic.outputs.has_release == 'true'
+      if: steps.check_release.outputs.new_release == 'true'
       run: |
+        echo "🚀 Publishing packages to NuGet.org..."
         dotnet nuget push ./packages/*.nupkg \
           --api-key ${{ secrets.NUGET_API_KEY }} \
           --source https://api.nuget.org/v3/index.json \
           --skip-duplicate
+        echo "✅ Packages published successfully!"
     
     - name: Upload packages as artifacts
-      if: steps.semantic.outputs.has_release == 'true'
+      if: steps.check_release.outputs.new_release == 'true'
       uses: actions/upload-artifact@v4
       with:
         name: nuget-packages
