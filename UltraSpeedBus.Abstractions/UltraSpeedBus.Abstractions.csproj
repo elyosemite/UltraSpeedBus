@@ -4,6 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <PackageId>UltraSpeedBus.Abstractions</PackageId>
+    <Description>Core abstractions and interfaces for UltraSpeedBus</Description>
+    <PackageTags>messaging;ultraspeedbus</PackageTags>
   </PropertyGroup>
 
 </Project>

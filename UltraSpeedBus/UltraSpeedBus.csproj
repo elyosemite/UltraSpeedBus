@@ -4,6 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <PackageId>UltraSpeedBus.AzureServiceBus</PackageId>
+    <Description>Azure Service Bus transport implementation for UltraSpeedBus</Description>
+    <PackageTags>messaging;azure-service-bus;ultraspeedbus</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
