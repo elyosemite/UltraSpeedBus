@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © UltraSpeedBus 2025")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("Core abstractions and interfaces for UltraSpeedBus")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc1c97aa505fc017696f80412bbb00fb0578ecc8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+331f3118c12b01673bd1e4d4ff545eeffb3dc9f6")]
 [assembly: System.Reflection.AssemblyProductAttribute("UltraSpeedBus.Abstractions")]
 [assembly: System.Reflection.AssemblyTitleAttribute("UltraSpeedBus.Abstractions")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
