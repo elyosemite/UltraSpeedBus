@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/elyosemite/UltraSpeedBus/compare/v1.2.3...v1.2.4) (2025-11-16)
+
+
+### Bug Fixes
+
+* update PackageTags for clarity in project configuration ([ffea188](https://github.com/elyosemite/UltraSpeedBus/commit/ffea1881d99cfd809c2b3cd2da36e2a8914666d9))
+
 ## [1.2.3](https://github.com/elyosemite/UltraSpeedBus/compare/v1.2.2...v1.2.3) (2025-11-16)
 
 
