@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/elyosemite/UltraSpeedBus/compare/v1.1.0...v1.1.1) (2025-11-16)
+
+
+### Bug Fixes
+
+* update semantic release workflow to correctly handle versioning and release conditions ([3698d34](https://github.com/elyosemite/UltraSpeedBus/commit/3698d34511c275ba9828ed8499ab030e32998343))
+
 ## [1.1.0](https://github.com/elyosemite/UltraSpeedBus/compare/v1.0.0...v1.1.0) (2025-11-16)
 
 
