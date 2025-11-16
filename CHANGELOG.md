@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/elyosemite/UltraSpeedBus/compare/v1.2.2...v1.2.3) (2025-11-16)
+
+
+### Bug Fixes
+
+* remove unused PackageIcon property from project configuration ([f650d6f](https://github.com/elyosemite/UltraSpeedBus/commit/f650d6fc6f0a498efa2d5580d2b92e2349805195))
+
 ## [1.2.2](https://github.com/elyosemite/UltraSpeedBus/compare/v1.2.1...v1.2.2) (2025-11-16)
 
 
