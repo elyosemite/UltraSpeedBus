@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/elyosemite/UltraSpeedBus/compare/v1.2.0...v1.2.1) (2025-11-16)
+
+
+### Bug Fixes
+
+* update release workflow to check for version file and improve NuGet package handling ([bba1ad2](https://github.com/elyosemite/UltraSpeedBus/commit/bba1ad27d7696e7669df3039c39f5499dfb7987d))
+
 ## [1.2.0](https://github.com/elyosemite/UltraSpeedBus/compare/v1.1.1...v1.2.0) (2025-11-16)
 
 
