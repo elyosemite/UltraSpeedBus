@@ -55,15 +55,27 @@ jobs:
         GIT_COMMITTER_NAME: github-actions[bot]
         GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
       run: npx semantic-release
+
+    - name: Get release version
+      id: get_version
+      run: |
+        VERSION=$(git describe --tags --abbrev=0 2>/dev/null | sed 's/^v//' || echo "")
+        if [ -n "$VERSION" ]; then
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "has_release=true" >> $GITHUB_OUTPUT
+        else
+          echo "has_release=false" >> $GITHUB_OUTPUT
+        fi
+      continue-on-error: true
     
     - name: Pack NuGet packages
-      if: steps.semantic.outputs.new_release_published == 'true'
+      if: steps.semantic.outputs.has_release == 'true'
       run: |
-        VERSION=${{ steps.semantic.outputs.new_release_version }}
+        VERSION=${{ steps.semantic.outputs.version }}
         dotnet pack --configuration Release --no-build --output ./packages /p:PackageVersion=$VERSION
     
     - name: Publish to NuGet.org
-      if: steps.semantic.outputs.new_release_published == 'true'
+      if: steps.semantic.outputs.has_release == 'true'
       run: |
         dotnet nuget push ./packages/*.nupkg \
           --api-key ${{ secrets.NUGET_API_KEY }} \
@@ -71,7 +83,7 @@ jobs:
           --skip-duplicate
     
     - name: Upload packages as artifacts
-      if: steps.semantic.outputs.new_release_published == 'true'
+      if: steps.semantic.outputs.has_release == 'true'
       uses: actions/upload-artifact@v4
       with:
         name: nuget-packages
