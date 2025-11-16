@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/elyosemite/UltraSpeedBus/compare/v1.2.4...v1.2.5) (2025-11-16)
+
+
+### Bug Fixes
+
+* correct typo in .gitignore for object files ([fa48794](https://github.com/elyosemite/UltraSpeedBus/commit/fa48794abea1eff93a0cf5bcfab4547737ab7484))
+
 ## [1.2.4](https://github.com/elyosemite/UltraSpeedBus/compare/v1.2.3...v1.2.4) (2025-11-16)
 
 
