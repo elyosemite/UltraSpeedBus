@@ -57,7 +57,7 @@ jobs:
       run: npx semantic-release
 
     - name: Get release version
-      id: get_version
+      id: check_release
       run: |
         VERSION=$(git describe --tags --abbrev=0 2>/dev/null | sed 's/^v//' || echo "")
         if [ -f .version ]; then
