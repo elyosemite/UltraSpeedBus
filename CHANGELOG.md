@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/elyosemite/UltraSpeedBus/compare/v1.2.1...v1.2.2) (2025-11-16)
+
+
+### Bug Fixes
+
+* rename step ID for clarity in release workflow ([f72c4b5](https://github.com/elyosemite/UltraSpeedBus/commit/f72c4b562571e4300984d273d52af36ef5a92a43))
+
 ## [1.2.1](https://github.com/elyosemite/UltraSpeedBus/compare/v1.2.0...v1.2.1) (2025-11-16)
 
 
