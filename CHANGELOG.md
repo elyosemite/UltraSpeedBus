@@ -1,3 +1,10 @@
+## [1.2.0](https://github.com/elyosemite/UltraSpeedBus/compare/v1.1.1...v1.2.0) (2025-11-16)
+
+
+### Features
+
+* add saga interfaces and update project structure for .NET 8.0 compatibility ([3dd0fe1](https://github.com/elyosemite/UltraSpeedBus/commit/3dd0fe1a7407709d05931ecd91e725e905ac8b3b))
+
 ## [1.1.1](https://github.com/elyosemite/UltraSpeedBus/compare/v1.1.0...v1.1.1) (2025-11-16)
 
 
