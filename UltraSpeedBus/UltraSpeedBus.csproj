@@ -5,9 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
-    <PackageId>UltraSpeedBus.AzureServiceBus</PackageId>
-    <Description>Azure Service Bus transport implementation for UltraSpeedBus</Description>
-    <PackageTags>messaging;azure-service-bus;ultraspeedbus</PackageTags>
+    <PackageId>UltraSpeedBus</PackageId>
+    <Description>A high-performance messaging library for building distributed systems in .NET</Description>
+    <PackageTags>messaging;ultraspeedbus;distributedsystems</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

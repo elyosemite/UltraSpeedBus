@@ -7,7 +7,7 @@
 
     <PackageId>UltraSpeedBus.Abstractions</PackageId>
     <Description>Core abstractions and interfaces for UltraSpeedBus</Description>
-    <PackageTags>messaging;ultraspeedbus</PackageTags>
+    <PackageTags>messaging;ultraspeedbus;ultraspeedbus.abstractions;distributedsystems</PackageTags>
   </PropertyGroup>
 
 </Project>
