@@ -1,3 +1,16 @@
+## [1.3.0](https://github.com/elyosemite/UltraSpeedBus/compare/v1.2.5...v1.3.0) (2025-11-18)
+
+
+### Features
+
+* add ICommandHandler, IEventHandler, IQueryHandler, ITransport, ITransportConsumer, and ITransportProducer interfaces ([7cf31ad](https://github.com/elyosemite/UltraSpeedBus/commit/7cf31ad59283d1d3205cd3dc8560668ce226d501))
+* add pull_request trigger for CI workflow on main branch ([b634ca1](https://github.com/elyosemite/UltraSpeedBus/commit/b634ca1915e6ea0ce32635e949d58d05c9daeeb6))
+
+
+### Bug Fixes
+
+* restrict CI workflow branches to only main ([6deeac7](https://github.com/elyosemite/UltraSpeedBus/commit/6deeac73058f4d24ab071ee6489a861fb72a61c9))
+
 ## [1.2.5](https://github.com/elyosemite/UltraSpeedBus/compare/v1.2.4...v1.2.5) (2025-11-16)
 
 
