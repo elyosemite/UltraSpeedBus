@@ -3,4 +3,4 @@
 /// <summary>
 /// Event message marker interface
 /// </summary>
-public interface IEvent : IMessage {}
+public interface IEvent {}// : IMessage {}
