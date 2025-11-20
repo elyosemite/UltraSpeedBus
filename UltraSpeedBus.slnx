@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/sample/">
+    <Project Path="sample/UltraSpeedBus.WebAPI/UltraSpeedBus.WebAPI.csproj" />
+  </Folder>
   <Folder Name="/src/">
     <Project Path="UltraSpeedBus.Abstractions/UltraSpeedBus.Abstractions.csproj" />
     <Project Path="UltraSpeedBus.Tests/UltraSpeedBus.Tests.csproj" />

@@ -3,4 +3,4 @@
 /// <summary>
 /// Command message marker interface
 /// </summary>
-public interface ICommand : IMessage {}
+public interface ICommand{}// : IMessage {}
