@@ -4,3 +4,9 @@ GET {{UltraSpeedBus.WebAPI_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+POST /orders
+Body:
+{
+    "product": "Pizza",
+    "quantity": 2
+}

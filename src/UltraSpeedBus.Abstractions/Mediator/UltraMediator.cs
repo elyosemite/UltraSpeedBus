@@ -3,7 +3,6 @@ using UltraSpeedBus.Abstractions.Mediator;
 
 namespace UltraSppedBus.Abstractions.Mediator;
 
-
 public class UltraMediator : IMediator
 {
     private readonly Dictionary<Type, Func<object, Task<object>>> _commandHandlers = new();
