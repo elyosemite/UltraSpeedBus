@@ -1,3 +1,27 @@
+## [1.4.0](https://github.com/elyosemite/UltraSpeedBus/compare/v1.3.0...v1.4.0) (2025-11-26)
+
+
+### Features
+
+* add build task and define IPublish and ISend interfaces; remove obsolete message interfaces and handlers ([f06eb09](https://github.com/elyosemite/UltraSpeedBus/commit/f06eb09f6f4e57059159cf1113d18c41d884b076))
+* add command and query handler examples to README ([b41b00e](https://github.com/elyosemite/UltraSpeedBus/commit/b41b00e7e683d777e22b168ab02975a1e1cf1a0d))
+* add command, query, and event context classes and mediator interfaces ([9fd8585](https://github.com/elyosemite/UltraSpeedBus/commit/9fd85857f6797c41e18cdcc452704b97b1f7fb68))
+* add CommandContext class for encapsulating command data ([5c824f5](https://github.com/elyosemite/UltraSpeedBus/commit/5c824f5681e5949be0dc19badd4b265609b98087))
+* add documentation for UltraSpeedBus.Extensions.DependencyInjection package ([c7f0d69](https://github.com/elyosemite/UltraSpeedBus/commit/c7f0d69501a57630f0340eceadc0a669fce67787))
+* add EventContext class for encapsulating event data ([417dd55](https://github.com/elyosemite/UltraSpeedBus/commit/417dd55a2de1f154cd5905eef658d42dcc04da7f))
+* add IConsumerConnector interface for connecting message handlers ([06ecf68](https://github.com/elyosemite/UltraSpeedBus/commit/06ecf68d0246e123af057dd28f2c46d7394ca128))
+* add IConsumerRegister interface for registering command, query, and event handlers ([2af1de5](https://github.com/elyosemite/UltraSpeedBus/commit/2af1de5dfff1dfb43d275698d0d5a7ec8203b11a))
+* add IMediator interface for handling message sending and publishing ([e0404af](https://github.com/elyosemite/UltraSpeedBus/commit/e0404af7c309344ac63cb112fcd3f64e83bc5d8a))
+* add initial implementation of UltraSpeedBus with command, query, and event handling ([e46db99](https://github.com/elyosemite/UltraSpeedBus/commit/e46db99b8861eadf3783652d15571c2d91796da0))
+* add package metadata for UltraSpeedBus.Extensions.DependencyInjection ([9aafbf9](https://github.com/elyosemite/UltraSpeedBus/commit/9aafbf9fbdef59523d716b99d63f3e5dea5f6d7d))
+* add QueryContext class for handling query data ([66c3907](https://github.com/elyosemite/UltraSpeedBus/commit/66c3907a16a8e61bc9f2acf8e60ab9aea8539a07))
+* define IHandlerHandle and IDynamicHandler interfaces for message handling ([2759ae3](https://github.com/elyosemite/UltraSpeedBus/commit/2759ae31a6da97d7001b77ded5e409ed9ca2e8fb))
+* implement ConsumeContext class for message handling ([e84146c](https://github.com/elyosemite/UltraSpeedBus/commit/e84146cd61b436b8bb3d1291cb65e7280c9ff002))
+* implement UltraMediator class for handling commands, queries, and events ([c091e6e](https://github.com/elyosemite/UltraSpeedBus/commit/c091e6ee66ddd316d792bd1de4c2c11faa579db2))
+* initialize project structure with Mediator pattern and basic command/event/query handling ([1442830](https://github.com/elyosemite/UltraSpeedBus/commit/1442830ce863582ae30fb3a88bb7cf33de955bc2))
+* remove obsolete context and mediator classes and interfaces ([a9b0943](https://github.com/elyosemite/UltraSpeedBus/commit/a9b09432a589d896ab5e4a3b8482ca50f687a022))
+* update README with command handler example and package installation instructions ([f4d84e2](https://github.com/elyosemite/UltraSpeedBus/commit/f4d84e2b2c58c6289d9114da118b12618aba87a9))
+
 ## [1.3.0](https://github.com/elyosemite/UltraSpeedBus/compare/v1.2.5...v1.3.0) (2025-11-18)
 
 
