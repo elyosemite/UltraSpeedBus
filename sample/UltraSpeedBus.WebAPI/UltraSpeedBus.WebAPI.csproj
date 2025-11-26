@@ -12,8 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\UltraSpeedBus\UltraSpeedBus.csproj" />
-    <ProjectReference Include="..\..\UltraSpeedBus.Abstractions\UltraSpeedBus.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\UltraSpeedBus\UltraSpeedBus.csproj" />
+    <ProjectReference Include="..\..\src\UltraSpeedBus.Abstractions\UltraSpeedBus.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\UltraSpeedBus.Extensions.DepedencyInjection\UltraSpeedBus.Extensions.DepedencyInjection.csproj" />
   </ItemGroup>
 
 </Project>
