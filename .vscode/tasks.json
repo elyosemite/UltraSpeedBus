@@ -14,6 +14,18 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "build2",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/UltraSpeedBus.Abstractions/UltraSpeedBus.Abstractions.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "promptOnClose": false
+        },
+        {
             "label": "publish",
             "command": "dotnet",
             "type": "process",
