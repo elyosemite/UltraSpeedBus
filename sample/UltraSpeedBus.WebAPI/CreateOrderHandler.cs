@@ -22,7 +22,6 @@ public class CreateOrderHandler : ICommandHandler<CreateOrder, OrderResult>
 }
 #endregion
 
-
 #region Query
 public sealed record GetOrder(int OrderId);
 public sealed record OrderDto(int OrderId, string Description);

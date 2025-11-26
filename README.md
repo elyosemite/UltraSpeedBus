@@ -27,6 +27,8 @@ dotnet add package UltraSpeedBus.Abstractions
 dotnet add package UltraSpeedBus.Extensions.DependencyInjection
 ```
 
+## Command handler
+
 ```csharp
 using UltraSpeedBus;
 using UltraSpeedBus.Abstractions;
@@ -41,6 +43,41 @@ public class CreateOrderHandler : ICommandHandler<CreateOrderCommand, OrderResul
     {
         int generatedId = Random.Shared.Next(1000, 9999);
         return Task.FromResult(new OrderResult(generatedId));
+    }
+}
+```
+
+## Query Handler
+
+```cs
+public sealed record GetOrderQuery(int OrderId);
+public sealed record OrderDto(int OrderId, string Description);
+
+public class GetOrderQueryHandler : IQueryHandler<GetOrderQuery, OrderDto?>
+{
+    public Task<OrderDto?> Handle(QueryContext<GetOrderQuery> context)
+    {
+        if (context.Query.OrderId == 42)
+        {
+            return Task.FromResult<OrderDto?>(new OrderDto(42, "Example Order"));
+        }
+
+        return Task.FromResult<OrderDto?>(null);
+    }
+}
+```
+
+## Event Handler
+
+```cs
+public sealed record OrderCreatedEvent(int OrderId);
+
+public class OrderCreatedEventHandler : IEventHandler<OrderCreatedEvent>
+{
+    public Task Handle(EventContext<OrderCreatedEvent> context)
+    {
+        Console.WriteLine($"[Event] Order created → Id = {context.Event.OrderId}");
+        return Task.CompletedTask;
     }
 }
 ```
