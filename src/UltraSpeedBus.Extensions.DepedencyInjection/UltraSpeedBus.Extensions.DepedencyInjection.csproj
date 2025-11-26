@@ -4,6 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <PackageId>UltraSpeedBus.Extensions.DependencyInjection</PackageId>
+    <Description>Dependency Injection for UltraSpeedBus</Description>
+    <PackageTags>di;dependencyinjection;messaging;ultraspeedbus;distributedsystems</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
