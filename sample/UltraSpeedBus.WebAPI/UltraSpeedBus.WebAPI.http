@@ -1,0 +1,12 @@
+@UltraSpeedBus.WebAPI_HostAddress = http://localhost:5185
+
+GET {{UltraSpeedBus.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+POST /orders
+Body:
+{
+    "product": "Pizza",
+    "quantity": 2
+}

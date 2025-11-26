@@ -1,7 +1,11 @@
 <Solution>
+  <Folder Name="/sample/">
+    <Project Path="sample/UltraSpeedBus.WebAPI/UltraSpeedBus.WebAPI.csproj" />
+  </Folder>
   <Folder Name="/src/">
-    <Project Path="UltraSpeedBus.Abstractions/UltraSpeedBus.Abstractions.csproj" />
-    <Project Path="UltraSpeedBus.Tests/UltraSpeedBus.Tests.csproj" />
-    <Project Path="UltraSpeedBus/UltraSpeedBus.csproj" />
+    <Project Path="src/UltraSpeedBus.Abstractions/UltraSpeedBus.Abstractions.csproj" />
+    <Project Path="src/UltraSpeedBus.Tests/UltraSpeedBus.Tests.csproj" />
+    <Project Path="src/UltraSpeedBus/UltraSpeedBus.csproj" />
+    <Project Path="src/UltraSpeedBus.Extensions.DepedencyInjection/UltraSpeedBus.Extensions.DepedencyInjection.csproj" />
   </Folder>
 </Solution>
