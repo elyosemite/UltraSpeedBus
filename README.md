@@ -24,18 +24,25 @@ UltraSpeedBus is a free, open-source messaging framework for .NET, engineered fo
 # Install the packages via NuGet
 dotnet add package UltraSpeedBus
 dotnet add package UltraSpeedBus.Abstractions
+dotnet add package UltraSpeedBus.Extensions.DependencyInjection
 ```
 
 ```csharp
 using UltraSpeedBus;
 using UltraSpeedBus.Abstractions;
 
-// Create a message
-var message = new MyCommand { Name = "Test" };
-var envelope = MessageFactory.Create(message);
+// Create a command and command Handler with ICommandHandler
+public sealed record CreateOrderCommand(string Product, int Quantity);
+public sealed record OrderResult(int OrderId);
 
-// Send using your transport implementation (e.g., Azure Service Bus)
-await producer.SendAsync(envelope);
+public class CreateOrderHandler : ICommandHandler<CreateOrderCommand, OrderResult>
+{
+    public Task<OrderResult> Handle(CommandContext<CreateOrderCommand> request)
+    {
+        int generatedId = Random.Shared.Next(1000, 9999);
+        return Task.FromResult(new OrderResult(generatedId));
+    }
+}
 ```
 
 ## Contributing
