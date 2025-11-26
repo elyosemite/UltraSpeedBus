@@ -39,35 +39,38 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddUltraSpeedBus();
+builder.Services.AddUltraSpeedBus(); // Add this method extensions: AddUltraSpeedBus()
 
+// Configure your Command, Query and Event handlers
 builder.Services.AddSingleton<ICommandHandler<CreateOrder, OrderResult>, CreateOrderHandler>();
 builder.Services.AddSingleton<IQueryHandler<GetOrder, OrderDto?>, GetOrderQueryHandler>();
 builder.Services.AddSingleton<IEventHandler<OrderCreated>, OrderCreatedEventHandler>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// more configurations
 
-app.UseHttpsRedirection();
-
+// Get the mediator instance
 var mediator = app.Services.GetRequiredService<IMediator>();
 
+
+// Register your Commandhandler for CreateOrder record
 mediator.RegisterCommandHandler<CreateOrder, OrderResult>(
     (ctx) => app.Services.GetRequiredService<ICommandHandler<CreateOrder, OrderResult>>().Handle(ctx)
 );
 
+
+// Register your QueryHandler for GetOrder record
 mediator.RegisterQueryHandler<GetOrder, OrderDto?>(
     (ctx) => app.Services.GetRequiredService<IQueryHandler<GetOrder, OrderDto?>>().Handle(ctx)
 );
 
+// Register your EventHandler for GetOrder record
 mediator.RegisterEventHandler<OrderCreated>(
     (ctx) => app.Services.GetRequiredService<IEventHandler<OrderCreated>>().Handle(ctx)
 );
+
+// Use Minimal APIS
 
 app.MapPost("/orders", async (CreateOrder command, ISend sender) =>
 {
