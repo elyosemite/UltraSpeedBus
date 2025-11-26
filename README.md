@@ -7,6 +7,7 @@ UltraSpeedBus is a free, open-source messaging framework for .NET, engineered fo
 | ---------------------------- | --------------------------------------------------------------------------------------------- |
 | `UltraSpeedBus`              | The core library with message transport, context, pipelines, and integration implementations. |
 | `UltraSpeedBus.Abstractions` | Contains the core contracts, interfaces, and message envelope definitions for the system.     |
+| `UltraSpeedBus.Extensions.DependencyInjection` | Inject your dependencies |
 
 ## Features
 
