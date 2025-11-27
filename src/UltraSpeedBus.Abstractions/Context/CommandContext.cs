@@ -1,5 +1,6 @@
 namespace UltraSpeedBus.Abstractions.Contracts;
 
+
 public class CommandContext<TCommand>
 {
     public TCommand Command { get; }
