@@ -1,8 +1,9 @@
-using UltraSpeedBus.Abstractions;
 using UltraSpeedBus.Abstractions.Contracts;
 using UltraSpeedBus.Abstractions.Mediator;
 using UltraSpeedBus.Extensions.DepedencyInjection;
-using UltraSpeedBus.WebAPI;
+using UltraSpeedBus.WebAPI.CommandHandler;
+using UltraSpeedBus.WebAPI.EventHandler;
+using UltraSpeedBus.WebAPI.QueryHandler;
 
 var builder = WebApplication.CreateBuilder(args);
 

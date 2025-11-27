@@ -35,6 +35,8 @@ public class UltraMediator : IMediator
     // Publisher 1 x Many Consumers
     public Task PublishAsync<TEvent>(TEvent @event)
     {
+        if (@event == null) throw new ArgumentException(nameof(@event));
+
         var type = typeof(TEvent);
         var tasks = new List<Task>();
 
@@ -108,6 +110,8 @@ public class UltraMediator : IMediator
         TRequest request
     )
     {
+        if (request is null) throw new ArgumentNullException(nameof(request));
+
         var response = await handler(request);
         return (TResponse)response;
     }
