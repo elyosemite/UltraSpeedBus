@@ -13,7 +13,7 @@ builder.Services.AddUltraSpeedBus();
 
 builder.Services.AddSingleton<ICommandHandler<CreateOrder, OrderResult>, CreateOrderHandler>();
 builder.Services.AddSingleton<IQueryHandler<GetOrder, OrderDto?>, GetOrderQueryHandler>();
-builder.Services.AddSingleton<IEventHandler<OrderCreated>, OrderCreatedEventHandler>();
+builder.Services.AddSingleton<IEventProcessor<OrderCreated>, OrderCreatedEventHandler>();
 
 var app = builder.Build();
 
@@ -36,7 +36,7 @@ mediator.RegisterQueryHandler<GetOrder, OrderDto?>(
 );
 
 mediator.RegisterEventHandler<OrderCreated>(
-    (ctx) => app.Services.GetRequiredService<IEventHandler<OrderCreated>>().Handle(ctx)
+    (ctx) => app.Services.GetRequiredService<IEventProcessor<OrderCreated>>().Handle(ctx)
 );
 
 app.MapPost("/orders", async (CreateOrder command, ISend sender) =>

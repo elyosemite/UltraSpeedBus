@@ -3,7 +3,7 @@ using UltraSpeedBus.WebAPI.CommandHandler;
 
 namespace UltraSpeedBus.WebAPI.EventHandler;
 
-public class OrderCreatedEventHandler : IEventHandler<OrderCreated>
+public class OrderCreatedEventHandler : IEventProcessor<OrderCreated>
 {
     public Task Handle(EventContext<OrderCreated> context)
     {

@@ -1,6 +1,6 @@
 namespace UltraSpeedBus.Abstractions.Contracts;
 
-public interface IEventHandler<TEvent>
+public interface IEventProcessor<TEvent>
 {
     Task Handle(EventContext<TEvent> request);
 }

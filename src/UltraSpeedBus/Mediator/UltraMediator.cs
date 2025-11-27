@@ -33,9 +33,9 @@ public class UltraMediator : IMediator
 
     #region Implement IPublish
     // Publisher 1 x Many Consumers
-    public Task PublishAsync<TEvent>(TEvent @event)
+    public Task PublishAsync<TEvent>(TEvent message)
     {
-        if (@event == null) throw new ArgumentException(nameof(@event));
+        if (message == null) throw new ArgumentException(nameof(message));
 
         var type = typeof(TEvent);
         var tasks = new List<Task>();
@@ -43,14 +43,14 @@ public class UltraMediator : IMediator
         if (_eventHandlers.TryGetValue(type, out var eventHandlers))
         {
             foreach (var handler in eventHandlers)
-                tasks.Add(handler(@event));
+                tasks.Add(handler(message));
         }
 
         // You can disable this one
         if (_dynamicHandlers.TryGetValue(type, out var dynamicEventHandlers))
         {
             foreach (var handler in dynamicEventHandlers.OfType<DynamicHandler<TEvent>>())
-                tasks.Add(handler.Handle(@event));
+                tasks.Add(handler.Handle(message));
         }
 
         return Task.WhenAll(tasks);
