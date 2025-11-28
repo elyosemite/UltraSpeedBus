@@ -27,6 +27,83 @@ dotnet add package UltraSpeedBus.Abstractions
 dotnet add package UltraSpeedBus.Extensions.DependencyInjection
 ```
 
+# Configure your ``Program``
+```cs
+using UltraSpeedBus.Abstractions;
+using UltraSpeedBus.Abstractions.Contracts;
+using UltraSpeedBus.Abstractions.Mediator;
+using UltraSpeedBus.Extensions.DepedencyInjection;
+using UltraSpeedBus.WebAPI;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddUltraSpeedBus(); // Add this method extensions: AddUltraSpeedBus()
+
+// Configure your Command, Query and Event handlers
+builder.Services.AddSingleton<ICommandHandler<CreateOrder, OrderResult>, CreateOrderHandler>();
+builder.Services.AddSingleton<IQueryHandler<GetOrder, OrderDto?>, GetOrderQueryHandler>();
+builder.Services.AddSingleton<IEventHandler<OrderCreated>, OrderCreatedEventHandler>();
+
+var app = builder.Build();
+
+// more configurations
+
+// Get the mediator instance
+var mediator = app.Services.GetRequiredService<IMediator>();
+
+
+// Register your Commandhandler for CreateOrder record
+mediator.RegisterCommandHandler<CreateOrder, OrderResult>(
+    (ctx) => app.Services.GetRequiredService<ICommandHandler<CreateOrder, OrderResult>>().Handle(ctx)
+);
+
+
+// Register your QueryHandler for GetOrder record
+mediator.RegisterQueryHandler<GetOrder, OrderDto?>(
+    (ctx) => app.Services.GetRequiredService<IQueryHandler<GetOrder, OrderDto?>>().Handle(ctx)
+);
+
+// Register your EventHandler for GetOrder record
+mediator.RegisterEventHandler<OrderCreated>(
+    (ctx) => app.Services.GetRequiredService<IEventHandler<OrderCreated>>().Handle(ctx)
+);
+
+// Use Minimal APIS
+
+app.MapPost("/orders", async (CreateOrder command, ISend sender) =>
+{
+    var result = await sender.SendAsync<CreateOrder, OrderResult>(command);
+    return Results.Ok(result);
+});
+
+// GET /orders/{id} -> Send Query
+app.MapGet("/orders/{id:int}", async (int id, ISend sender) =>
+{
+    var result = await sender.SendAsync<GetOrder, OrderDto?>(new GetOrder(id));
+    if (result is null)
+        return Results.NotFound();
+
+    return Results.Ok(result);
+});
+
+// POST /simulate -> Publish Event directly
+app.MapPost("/simulate", async (IPublish publisher) =>
+{
+    await publisher.PublishAsync(new OrderCreated(999));
+    return Results.Ok("Event Published");
+});
+
+// Example: Dynamic event consumer (runtime registration)
+mediator.ConnectHandlerAsync<OrderCreated>(async ctx =>
+{
+    Console.WriteLine($"[Dynamic Consumer] Order created with {ctx.Message.OrderId}");
+});
+
+app.Run();
+```
+
 ## Command handler
 
 ```csharp

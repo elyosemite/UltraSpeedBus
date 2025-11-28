@@ -1,7 +1,6 @@
 namespace UltraSpeedBus.Abstractions.Contracts;
 
-public class QueryContext<TQuery>
+public class QueryContext<TQuery>(TQuery query)
 {
-    public TQuery Query { get; }
-    public QueryContext(TQuery query) => Query = query;
+    public TQuery Query { get; } = query;
 }

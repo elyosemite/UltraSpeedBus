@@ -8,5 +8,4 @@ public interface IMediator :
     IConsumerConnector,
     IConsumerRegister
 {
-    
 }

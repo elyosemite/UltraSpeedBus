@@ -1,13 +1,13 @@
-﻿namespace UltraSpeedBus.Extensions.DepedencyInjection;
-
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using UltraSpeedBus.Abstractions.Contracts;
 using UltraSpeedBus.Abstractions.Mediator;
 using UltraSppedBus.Abstractions.Mediator;
 
+namespace UltraSpeedBus.Extensions.DepedencyInjection;
+
 public static class UltraSpeedBusExtensions
 {
-    public static IServiceCollection AddUltraSpeedBus( this IServiceCollection services)
+    public static IServiceCollection AddUltraSpeedBus(this IServiceCollection services)
     {
         services.AddSingleton<IMediator, UltraMediator>();
 
