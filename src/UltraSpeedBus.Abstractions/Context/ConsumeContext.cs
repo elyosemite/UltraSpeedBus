@@ -1,7 +1,6 @@
 namespace UltraSpeedBus.Abstractions.Contracts;
 
-public class ConsumeContext<T>
+public class ConsumeContext<T>(T message)
 {
-    public T Message { get; }
-    public ConsumeContext(T message) => Message = message;
+    public T Message { get; } = message;
 }
