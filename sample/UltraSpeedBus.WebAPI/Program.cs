@@ -13,7 +13,8 @@ builder.Services.AddUltraSpeedBus();
 
 builder.Services.AddSingleton<ICommandHandler<CreateOrder, OrderResult>, CreateOrderHandler>();
 builder.Services.AddSingleton<IQueryHandler<GetOrder, OrderDto?>, GetOrderQueryHandler>();
-builder.Services.AddSingleton<IEventProcessor<OrderCreated>, OrderCreatedEventHandler>();
+builder.Services.AddSingleton<IEventProcessor<OrderCreatedEvent>, OrderCreatedEventHandler>();
+builder.Services.AddSingleton<IEventProcessor<OrderAddedToInventoryEvent>, InventoryEventHandler>();
 
 WebApplication app = builder.Build();
 
@@ -33,8 +34,8 @@ mediator.RegisterCommandHandler<CreateOrder, OrderResult>(
 mediator.RegisterQueryHandler<GetOrder, OrderDto?>(
     (ctx) => app.Services.GetRequiredService<IQueryHandler<GetOrder, OrderDto?>>().Handle(ctx));
 
-mediator.RegisterEventHandler<OrderCreated>(
-    (ctx) => app.Services.GetRequiredService<IEventProcessor<OrderCreated>>().Handle(ctx));
+mediator.RegisterEventHandler<OrderCreatedEvent>(
+    (ctx) => app.Services.GetRequiredService<IEventProcessor<OrderCreatedEvent>>().Handle(ctx));
 
 app.MapPost("/orders", async (CreateOrder command, ISend sender) =>
 {
@@ -57,12 +58,15 @@ app.MapGet("/orders/{id:int}", async (int id, ISend sender) =>
 // POST /simulate -> Publish Event directly
 app.MapPost("/simulate", async (IPublish publisher) =>
 {
-    await publisher.PublishAsync(new OrderCreated(999));
+    await publisher.PublishAsync(new OrderCreatedEvent(999));
     return Results.Ok("Event Published");
 });
 
 // Example: Dynamic event consumer (runtime registration)
-mediator.ConnectHandlerAsync<OrderCreated>(async ctx
+mediator.ConnectHandlerAsync<OrderCreatedEvent>(async ctx
     => Console.WriteLine($"[Dynamic Consumer] Order created with {ctx.Message.orderId}"));
+
+mediator.ConnectHandlerAsync<OrderAddedToInventoryEvent>(async ctx
+    => Console.WriteLine($"[Dynamic Consumer] Order added to inventory with {ctx.Message.orderId}, quantity: {ctx.Message.quantity}, sku: {ctx.Message.sku}"));
 
 await app.RunAsync();
