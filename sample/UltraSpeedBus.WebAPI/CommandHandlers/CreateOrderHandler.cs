@@ -2,9 +2,9 @@ using UltraSpeedBus.Abstractions.Contracts;
 
 namespace UltraSpeedBus.WebAPI.CommandHandler;
 
-public sealed record CreateOrder(string Product, int Quantity);
-public sealed record OrderResult(int OrderId);
-public sealed record OrderCreated(int OrderId);
+public sealed record CreateOrder(string product, int quantity);
+public sealed record OrderResult(int orderId);
+public sealed record OrderCreated(int orderId);
 
 public class CreateOrderHandler : ICommandHandler<CreateOrder, OrderResult>
 {
