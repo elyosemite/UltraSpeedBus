@@ -1,8 +1,9 @@
-using UltraSpeedBus.Abstractions;
 using UltraSpeedBus.Abstractions.Contracts;
 using UltraSpeedBus.Abstractions.Mediator;
 using UltraSpeedBus.Extensions.DepedencyInjection;
-using UltraSpeedBus.WebAPI;
+using UltraSpeedBus.WebAPI.CommandHandler;
+using UltraSpeedBus.WebAPI.EventHandler;
+using UltraSpeedBus.WebAPI.QueryHandler;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,7 @@ builder.Services.AddUltraSpeedBus();
 
 builder.Services.AddSingleton<ICommandHandler<CreateOrder, OrderResult>, CreateOrderHandler>();
 builder.Services.AddSingleton<IQueryHandler<GetOrder, OrderDto?>, GetOrderQueryHandler>();
-builder.Services.AddSingleton<IEventHandler<OrderCreated>, OrderCreatedEventHandler>();
+builder.Services.AddSingleton<IEventProcessor<OrderCreated>, OrderCreatedEventHandler>();
 
 var app = builder.Build();
 
@@ -35,7 +36,7 @@ mediator.RegisterQueryHandler<GetOrder, OrderDto?>(
 );
 
 mediator.RegisterEventHandler<OrderCreated>(
-    (ctx) => app.Services.GetRequiredService<IEventHandler<OrderCreated>>().Handle(ctx)
+    (ctx) => app.Services.GetRequiredService<IEventProcessor<OrderCreated>>().Handle(ctx)
 );
 
 app.MapPost("/orders", async (CreateOrder command, ISend sender) =>
