@@ -1,3 +1,25 @@
+## [1.5.0](https://github.com/elyosemite/UltraSpeedBus/compare/v1.4.0...v1.5.0) (2025-11-28)
+
+
+### Features
+
+* add EditorConfig for coding standards and update Directory.Build.props to treat warnings as errors ([af19968](https://github.com/elyosemite/UltraSpeedBus/commit/af19968a5ad72332a69ce612dbe373d083f17ccb))
+* add IEventProcessor interface and improve CommandContext formatting ([438dd45](https://github.com/elyosemite/UltraSpeedBus/commit/438dd45dc2f735befc76623f2b138201a61c01e1))
+* add newlines for improved readability in IConsumerRegister interface ([528538e](https://github.com/elyosemite/UltraSpeedBus/commit/528538e20eda5694ab631b6c5d73f6b0d079e8b2))
+* enhance EditorConfig settings, fix method signature, and implement DynamicHandler for event handling ([af9641c](https://github.com/elyosemite/UltraSpeedBus/commit/af9641cae7e7f41c663184f1f65031085ffa79f0))
+* implement command, query, and event handling in UltraMediator and update README ([e6445ee](https://github.com/elyosemite/UltraSpeedBus/commit/e6445eef68a553d98eb83320b51149a213fe1e2f))
+* implement CreateOrder command handler and GetOrder query handler ([0121eb6](https://github.com/elyosemite/UltraSpeedBus/commit/0121eb658cc3039c594b3aa8b0bc28d524e556c5))
+* refactor CommandContext to use primary constructor for command initialization ([aa3f79d](https://github.com/elyosemite/UltraSpeedBus/commit/aa3f79d213f66ba63703a54098e36eb62fcb81f5))
+* refactor ConsumeContext and EventContext to use primary constructor for message initialization ([19d7c8f](https://github.com/elyosemite/UltraSpeedBus/commit/19d7c8fec929833487605fbd7cab616009eedfb1))
+* refactor QueryContext to use primary constructor for query initialization ([56a7c66](https://github.com/elyosemite/UltraSpeedBus/commit/56a7c66bb472f4e35f8b917c02f44c2e4383c2dd))
+* remove unnecessary whitespace in IMediator interface ([8ebd544](https://github.com/elyosemite/UltraSpeedBus/commit/8ebd544bede023d3cea5b97e4b8651eea3049b83))
+* standardize property naming to lowercase for consistency across command and query records ([5518e4f](https://github.com/elyosemite/UltraSpeedBus/commit/5518e4fe3154b02f53e81fbe7075663da534e54e))
+* update .editorconfig to disable SA1200 and SA1516 diagnostics ([1d8b535](https://github.com/elyosemite/UltraSpeedBus/commit/1d8b535d172e741aca59febf92ed732ae3cbad6f))
+* update .editorconfig with new line preferences and adjust Visual Basic modifier order ([9fcffd5](https://github.com/elyosemite/UltraSpeedBus/commit/9fcffd523a0e8a9027142f49a8f91817f5852c99))
+* update event handling for order creation and inventory addition ([9bb9a84](https://github.com/elyosemite/UltraSpeedBus/commit/9bb9a84f5d56b17c3bfa1c417b92419eb4de019d))
+* update event handling interfaces and improve code analysis settings ([2280f6d](https://github.com/elyosemite/UltraSpeedBus/commit/2280f6d659621778a2e6beba0d5fee8899288c22))
+* update README with additional configuration details and remove development environment checks ([e7dcbfc](https://github.com/elyosemite/UltraSpeedBus/commit/e7dcbfcf50a16aee9e23972034c78172d6e4b12a))
+
 ## [1.4.0](https://github.com/elyosemite/UltraSpeedBus/compare/v1.3.0...v1.4.0) (2025-11-26)
 
 
