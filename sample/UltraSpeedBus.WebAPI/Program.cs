@@ -1,4 +1,3 @@
-using System.Reflection.Metadata.Ecma335;
 using UltraSpeedBus.Abstractions.Contracts;
 using UltraSpeedBus.Abstractions.Mediator;
 using UltraSpeedBus.Extensions.DepedencyInjection;

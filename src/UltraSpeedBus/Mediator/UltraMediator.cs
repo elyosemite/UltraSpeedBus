@@ -95,10 +95,13 @@ public partial class UltraMediator : IMediator
 
     public void RegisterEventHandler<TEvent>(Func<EventContext<TEvent>, Task> handler)
     {
-        if (!_eventHandlers.TryGetValue(typeof(TEvent), out _))
+        if (!_eventHandlers.TryGetValue(typeof(TEvent), out List<Func<object, Task>>? list))
         {
-            _eventHandlers[typeof(TEvent)] = _ = new List<Func<object, Task>>();
+            list = new List<Func<object, Task>>();
+            _eventHandlers.Add(typeof(TEvent), list);
         }
+
+        list.Add(EventConsumer(handler));
     }
 
     internal void RemoveDynamicHandler(IDynamicHandler handler)
@@ -116,6 +119,15 @@ public partial class UltraMediator : IMediator
             }
         }
     }
+
+    private static Func<object, Task> EventConsumer<TEvent>(
+        Func<EventContext<TEvent>, Task> handler) =>
+            evt =>
+                {
+                    var typed = (TEvent)evt;
+                    var ctx = new EventContext<TEvent>(typed);
+                    return handler(ctx);
+                };
 
     private static async Task<TResponse> InvokeHandler<TRequest, TResponse>(
         Func<object, Task<object>> handler,
