@@ -5,7 +5,7 @@ using UltraSpeedBus.WebAPI.CommandHandler;
 using UltraSpeedBus.WebAPI.EventHandler;
 using UltraSpeedBus.WebAPI.QueryHandler;
 
-var builder = WebApplication.CreateBuilder(args);
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -15,7 +15,7 @@ builder.Services.AddSingleton<ICommandHandler<CreateOrder, OrderResult>, CreateO
 builder.Services.AddSingleton<IQueryHandler<GetOrder, OrderDto?>, GetOrderQueryHandler>();
 builder.Services.AddSingleton<IEventProcessor<OrderCreated>, OrderCreatedEventHandler>();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
@@ -25,32 +25,31 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var mediator = app.Services.GetRequiredService<IMediator>();
+IMediator mediator = app.Services.GetRequiredService<IMediator>();
 
 mediator.RegisterCommandHandler<CreateOrder, OrderResult>(
-    (ctx) => app.Services.GetRequiredService<ICommandHandler<CreateOrder, OrderResult>>().Handle(ctx)
-);
+    (ctx) => app.Services.GetRequiredService<ICommandHandler<CreateOrder, OrderResult>>().Handle(ctx));
 
 mediator.RegisterQueryHandler<GetOrder, OrderDto?>(
-    (ctx) => app.Services.GetRequiredService<IQueryHandler<GetOrder, OrderDto?>>().Handle(ctx)
-);
+    (ctx) => app.Services.GetRequiredService<IQueryHandler<GetOrder, OrderDto?>>().Handle(ctx));
 
 mediator.RegisterEventHandler<OrderCreated>(
-    (ctx) => app.Services.GetRequiredService<IEventProcessor<OrderCreated>>().Handle(ctx)
-);
+    (ctx) => app.Services.GetRequiredService<IEventProcessor<OrderCreated>>().Handle(ctx));
 
 app.MapPost("/orders", async (CreateOrder command, ISend sender) =>
 {
-    var result = await sender.SendAsync<CreateOrder, OrderResult>(command);
+    OrderResult result = await sender.SendAsync<CreateOrder, OrderResult>(command);
     return Results.Ok(result);
 });
 
 // GET /orders/{id} -> Send Query
 app.MapGet("/orders/{id:int}", async (int id, ISend sender) =>
 {
-    var result = await sender.SendAsync<GetOrder, OrderDto?>(new GetOrder(id));
+    OrderDto? result = await sender.SendAsync<GetOrder, OrderDto?>(new GetOrder(id));
     if (result is null)
+    {
         return Results.NotFound();
+    }
 
     return Results.Ok(result);
 });
@@ -63,9 +62,7 @@ app.MapPost("/simulate", async (IPublish publisher) =>
 });
 
 // Example: Dynamic event consumer (runtime registration)
-mediator.ConnectHandlerAsync<OrderCreated>(async ctx =>
-{
-    Console.WriteLine($"[Dynamic Consumer] Order created with {ctx.Message.OrderId}");
-});
+mediator.ConnectHandlerAsync<OrderCreated>(async ctx
+    => Console.WriteLine($"[Dynamic Consumer] Order created with {ctx.Message.orderId}"));
 
-app.Run();
+await app.RunAsync();

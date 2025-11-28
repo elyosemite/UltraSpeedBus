@@ -7,7 +7,7 @@ public class OrderCreatedEventHandler : IEventProcessor<OrderCreated>
 {
     public Task Handle(EventContext<OrderCreated> context)
     {
-        Console.WriteLine($"[Event] Order created → Id = {context.Event.OrderId}");
+        Console.WriteLine($"[Event] Order created → Id = {context.Event.orderId}");
         return Task.CompletedTask;
     }
 }
