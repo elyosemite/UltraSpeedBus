@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using UltraSpeedBus.Abstractions.Contracts;
 using UltraSpeedBus.Abstractions.Mediator;
 using UltraSpeedBus.Extensions.DepedencyInjection;
@@ -63,10 +64,13 @@ app.MapPost("/simulate", async (IPublish publisher) =>
 });
 
 // Example: Dynamic event consumer (runtime registration)
-mediator.ConnectHandlerAsync<OrderCreatedEvent>(async ctx
-    => Console.WriteLine($"[Dynamic Consumer] Order created with {ctx.Message.orderId}"));
-
-mediator.ConnectHandlerAsync<OrderAddedToInventoryEvent>(async ctx
-    => Console.WriteLine($"[Dynamic Consumer] Order added to inventory with {ctx.Message.orderId}, quantity: {ctx.Message.quantity}, sku: {ctx.Message.sku}"));
+mediator.ConnectHandlerAsync(OrderCreatedEventConsumer());
+mediator.ConnectHandlerAsync(OrderAddedToInventoryEventConsumer());
 
 await app.RunAsync();
+
+static Func<ConsumeContext<OrderCreatedEvent>, Task> OrderCreatedEventConsumer() => async context
+    => Console.WriteLine($"[Dynamic Consumer] Order created with {context.Message.orderId}");
+
+static Func<ConsumeContext<OrderAddedToInventoryEvent>, Task> OrderAddedToInventoryEventConsumer() => async context
+    => Console.WriteLine($"[Dynamic Consumer] Order added to inventory with {context.Message.orderId}, quantity: {context.Message.quantity}, sku: {context.Message.sku}");
